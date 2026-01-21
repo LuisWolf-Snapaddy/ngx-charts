@@ -29,7 +29,7 @@ export interface LegendEntry {
       }
       <div class="legend-wrap">
         <ul class="legend-labels" [class.horizontal-legend]="horizontal" [style.max-height.px]="height - 45">
-          @for (entry of legendEntries; track trackBy($index, entry)) {
+          @for (entry of legendEntries; track entry.label) {
             <li class="legend-label">
               <ngx-charts-legend-entry
                 [label]="entry.label"
@@ -113,9 +113,5 @@ export class LegendComponent implements OnChanges {
 
   deactivate(item: { name: string }) {
     this.labelDeactivate.emit(item);
-  }
-
-  trackBy(index: number, item: LegendEntry): string {
-    return item.label;
   }
 }

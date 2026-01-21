@@ -96,7 +96,7 @@ const twoPI = 2 * Math.PI;
         }
         @if (!isSSR) {
           <svg:g [attr.transform]="transformPlot">
-            @for (series of results; track trackBy($index, series)) {
+            @for (series of results; track series.name) {
               <svg:g [@animationState]="'active'">
                 <svg:g
                   ngx-charts-polar-series
@@ -122,7 +122,7 @@ const twoPI = 2 * Math.PI;
         }
         @if (isSSR) {
           <svg:g [attr.transform]="transformPlot">
-            @for (series of results; track trackBy($index, series)) {
+            @for (series of results; track series.name) {
               <svg:g>
                 <svg:g
                   ngx-charts-polar-series
@@ -522,9 +522,5 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
       this.deactivate.emit({ value: entry, entries: [] });
     }
     this.activeEntries = [];
-  }
-
-  trackBy(index: number, item): string {
-    return `${item.name}`;
   }
 }

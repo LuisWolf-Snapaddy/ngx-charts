@@ -7,8 +7,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef,
-  TrackByFunction
+  TemplateRef
 } from '@angular/core';
 import { scaleLinear, scalePoint, scaleTime } from 'd3-scale';
 import { curveLinear } from 'd3-shape';
@@ -18,7 +17,6 @@ import { ColorHelper } from '../common/color.helper';
 import { BaseChartComponent } from '../common/base-chart.component';
 import { id } from '../utils/id';
 import { getUniqueXDomainValues, getScaleType } from '../common/domain.helper';
-import { Series } from '../models/chart-data.model';
 import { SeriesType } from '../common/circle-series.component';
 import { LegendOptions, LegendPosition } from '../common/types/legend.model';
 import { ScaleType } from '../common/types/scale-type.enum';
@@ -81,7 +79,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
           ></svg:g>
         }
         <svg:g [attr.clip-path]="clipPath">
-          @for (series of results; track trackBy($index, series)) {
+          @for (series of results; track series.name) {
             <svg:g>
               <svg:g
                 ngx-charts-area-series
@@ -150,7 +148,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
           [scaleType]="scaleType"
           (onDomainChange)="updateDomain($event)"
         >
-          @for (series of results; track trackBy($index, series)) {
+          @for (series of results; track series.name) {
             <svg:g>
               <svg:g
                 ngx-charts-area-series
@@ -429,10 +427,6 @@ export class AreaChartNormalizedComponent extends BaseChartComponent {
 
     this.select.emit(data);
   }
-
-  trackBy: TrackByFunction<Series> = (index: number, item: Series) => {
-    return item.name;
-  };
 
   setColors(): void {
     let domain;

@@ -25,7 +25,7 @@ export interface PieArc {
   selector: 'g[ngx-charts-pie-grid-series]',
   template: `
     <svg:g class="pie-grid-arcs">
-      @for (arc of arcs; track trackBy($index, arc)) {
+      @for (arc of arcs; track arc.data.name) {
         <svg:g
           ngx-charts-pie-arc
           [attr.class]="arc.class"
@@ -104,10 +104,6 @@ export class PieGridSeriesComponent implements OnChanges {
 
   onClick(data): void {
     this.select.emit(this.data[0].data);
-  }
-
-  trackBy(index, item): string {
-    return item.data.name;
   }
 
   label(arc): string {

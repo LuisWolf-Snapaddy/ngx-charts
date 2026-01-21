@@ -22,7 +22,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
 @Component({
   selector: 'g[ngx-charts-pie-series]',
   template: `
-    @for (arc of data; track trackBy($index, arc)) {
+    @for (arc of data; track arc.data.name) {
       <svg:g>
         @if (labelVisible(arc)) {
           <svg:g
@@ -198,10 +198,6 @@ export class PieSeriesComponent implements OnChanges {
 
   color(myArc): any {
     return this.colors.getColor(this.label(myArc));
-  }
-
-  trackBy(index, item): string {
-    return item.data.name;
   }
 
   onClick(data): void {

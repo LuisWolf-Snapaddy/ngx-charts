@@ -86,7 +86,7 @@ import { isPlatformServer } from '@angular/common';
         <svg:g [attr.clip-path]="clipPath">
           @if (!isSSR) {
             <svg:g>
-              @for (series of results; track trackBy($index, series)) {
+              @for (series of results; track series.name) {
                 <svg:g [@animationState]="'active'">
                   <svg:g
                     ngx-charts-line-series
@@ -107,7 +107,7 @@ import { isPlatformServer } from '@angular/common';
           }
           @if (isSSR) {
             <svg:g>
-              @for (series of results; track trackBy($index, series)) {
+              @for (series of results; track series.name) {
                 <svg:g>
                   <svg:g
                     ngx-charts-line-series
@@ -176,7 +176,7 @@ import { isPlatformServer } from '@angular/common';
           [legend]="legend"
           (onDomainChange)="updateDomain($event)"
         >
-          @for (series of results; track trackBy($index, series)) {
+          @for (series of results; track series.name) {
             <svg:g>
               <svg:g
                 ngx-charts-line-series
@@ -473,10 +473,6 @@ export class LineChartComponent extends BaseChartComponent implements OnInit {
 
   onClick(data): void {
     this.select.emit(data);
-  }
-
-  trackBy(index: number, item): string {
-    return `${item.name}`;
   }
 
   setColors(): void {

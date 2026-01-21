@@ -42,7 +42,7 @@ export interface AdvancedLegendItem {
       </div>
       <div class="legend-items-container">
         <div class="legend-items">
-          @for (legendItem of legendItems; track trackBy($index, legendItem)) {
+          @for (legendItem of legendItems; track legendItem.label) {
             <div
               tabindex="-1"
               class="legend-item"
@@ -155,9 +155,5 @@ export class AdvancedLegendComponent implements OnChanges {
 
   getPercentage(value: number): number {
     return this.total > 0 ? (value / this.total) * 100 : 0;
-  }
-
-  trackBy(index: number, item: AdvancedLegendItem) {
-    return item.label;
   }
 }

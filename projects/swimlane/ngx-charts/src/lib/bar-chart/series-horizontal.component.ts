@@ -15,7 +15,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
 @Component({
   selector: 'g[ngx-charts-series-horizontal]',
   template: `
-    @for (bar of bars; track trackBy($index, bar)) {
+    @for (bar of bars; track bar.label) {
       <svg:g
         ngx-charts-bar
         [@animationState]="'active'"
@@ -267,10 +267,6 @@ export class SeriesHorizontal implements OnChanges {
       return dataItem.label;
     }
     return dataItem.name;
-  }
-
-  trackBy(index: number, bar: Bar): string {
-    return bar.label;
   }
 
   trackDataLabelBy(index: number, barLabel: any): string {

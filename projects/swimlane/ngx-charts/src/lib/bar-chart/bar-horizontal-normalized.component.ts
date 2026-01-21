@@ -7,7 +7,6 @@ import {
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef,
-  TrackByFunction
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 
@@ -72,7 +71,7 @@ import { isPlatformServer } from '@angular/common';
         }
         @if (!isSSR) {
           <svg:g>
-            @for (group of results; track trackBy($index, group)) {
+            @for (group of results; track group.name) {
               <svg:g [@animationState]="'active'" [attr.transform]="groupTransform(group)">
                 <svg:g
                   ngx-charts-series-horizontal
@@ -99,7 +98,7 @@ import { isPlatformServer } from '@angular/common';
         }
         @if (isSSR) {
           <svg:g>
-            @for (group of results; track trackBy($index, group)) {
+            @for (group of results; track group.name) {
               <svg:g [attr.transform]="groupTransform(group)">
                 <svg:g
                   ngx-charts-series-horizontal
@@ -278,10 +277,6 @@ export class BarHorizontalNormalizedComponent extends BaseChartComponent {
 
     this.select.emit(data);
   }
-
-  trackBy: TrackByFunction<Series> = (index: number, item: Series) => {
-    return item.name;
-  };
 
   setColors(): void {
     let domain;

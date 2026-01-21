@@ -8,7 +8,6 @@ import {
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef,
-  TrackByFunction
 } from '@angular/core';
 import { scaleLinear, scalePoint, scaleTime } from 'd3-scale';
 import { CurveFactory, curveLinear } from 'd3-shape';
@@ -85,7 +84,7 @@ import { select } from 'd3-selection';
           ></svg:g>
         }
         <svg:g [attr.clip-path]="clipPath">
-          @for (series of results; track trackBy($index, series)) {
+          @for (series of results; track series.name) {
             <svg:g>
               <svg:g
                 ngx-charts-area-series
@@ -152,7 +151,7 @@ import { select } from 'd3-selection';
           [scaleType]="scaleType"
           (onDomainChange)="updateDomain($event)"
         >
-          @for (series of results; track trackBy($index, series)) {
+          @for (series of results; track series.name) {
             <svg:g>
               <svg:g
                 ngx-charts-area-series
@@ -444,10 +443,6 @@ export class AreaChartComponent extends BaseChartComponent {
 
     this.select.emit(data);
   }
-
-  trackBy: TrackByFunction<Series> = (index: number, item: Series) => {
-    return item.name;
-  };
 
   setColors(): void {
     let domain;

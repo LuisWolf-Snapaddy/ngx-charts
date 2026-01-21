@@ -40,7 +40,7 @@ interface Arcs {
       (legendLabelDeactivate)="onDeactivate($event)"
     >
       <svg:g [attr.transform]="transform" class="gauge chart">
-        @for (arc of arcs; track trackBy($index, arc)) {
+        @for (arc of arcs; track arc.valueArc.data.name) {
           <svg:g [attr.transform]="rotation">
             <svg:g
               ngx-charts-gauge-arc
@@ -351,9 +351,5 @@ export class GaugeComponent extends BaseChartComponent implements AfterViewInit 
       return entry.name === d.name && entry.series === d.series;
     });
     return item !== undefined;
-  }
-
-  trackBy(index: number, item: Arcs): any {
-    return item.valueArc.data.name;
   }
 }

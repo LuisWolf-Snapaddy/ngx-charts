@@ -7,7 +7,6 @@ import {
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef,
-  TrackByFunction
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { scaleBand, scaleLinear } from 'd3-scale';
@@ -80,7 +79,7 @@ import { isPlatformServer } from '@angular/common';
         }
         @if (!isSSR) {
           <svg:g>
-            @for (group of results; track trackBy(index, group); let index = $index) {
+            @for (group of results; track group.name; let index = $index) {
               <svg:g
                 ngx-charts-series-vertical
                 [@animationState]="'active'"
@@ -110,7 +109,7 @@ import { isPlatformServer } from '@angular/common';
         }
         @if (isSSR) {
           <svg:g>
-            @for (group of results; track trackBy(index, group); let index = $index) {
+            @for (group of results; track group.name; let index = $index) {
               <svg:g
                 ngx-charts-series-vertical
                 [attr.transform]="groupTransform(group)"
@@ -345,10 +344,6 @@ export class BarVertical2DComponent extends BaseChartComponent {
 
     this.select.emit(data);
   }
-
-  trackBy: TrackByFunction<DataItem> = (index: number, item: DataItem) => {
-    return item.name;
-  };
 
   setColors(): void {
     let domain;

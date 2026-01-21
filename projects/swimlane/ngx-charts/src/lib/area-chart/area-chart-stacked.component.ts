@@ -79,7 +79,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
           ></svg:g>
         }
         <svg:g [attr.clip-path]="clipPath">
-          @for (series of results; track trackBy($index, series)) {
+          @for (series of results; track series.name) {
             <svg:g>
               <svg:g
                 ngx-charts-area-series
@@ -110,7 +110,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
                 [tooltipTemplate]="seriesTooltipTemplate"
                 (hover)="updateHoveredVertical($event)"
               />
-              @for (series of results; track trackBy($index, series)) {
+              @for (series of results; track series.name) {
                 <svg:g>
                   <svg:g
                     ngx-charts-circle-series
@@ -147,7 +147,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
           [scaleType]="scaleType"
           (onDomainChange)="updateDomain($event)"
         >
-          @for (series of results; track trackBy($index, series)) {
+          @for (series of results; track series.name) {
             <svg:g>
               <svg:g
                 ngx-charts-area-series
@@ -442,10 +442,6 @@ export class AreaChartStackedComponent extends BaseChartComponent {
     }
 
     this.select.emit(data);
-  }
-
-  trackBy(index, item): string {
-    return `${item.name}`;
   }
 
   setColors(): void {

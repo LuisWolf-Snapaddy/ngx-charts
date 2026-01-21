@@ -29,7 +29,7 @@ interface Cell {
 @Component({
   selector: 'g[ngx-charts-heat-map-cell-series]',
   template: `
-    @for (c of cells; track trackBy($index, c)) {
+    @for (c of cells; track c.label) {
       <svg:g
         ngx-charts-heat-map-cell
         [x]="c.x"
@@ -121,10 +121,6 @@ export class HeatCellSeriesComponent implements OnChanges, OnInit {
       <span class="tooltip-label">${escapeLabel(series)} • ${escapeLabel(label)}</span>
       <span class="tooltip-val">${data.toLocaleString()}</span>
     `;
-  }
-
-  trackBy(index: number, item): string {
-    return item.label;
   }
 
   onClick(data): void {

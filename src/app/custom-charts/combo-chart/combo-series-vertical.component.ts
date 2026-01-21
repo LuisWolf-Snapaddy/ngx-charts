@@ -9,7 +9,7 @@ import { BarOrientation } from '@swimlane/ngx-charts/common/types/bar-orientatio
   // tslint:disable-next-line: component-selector
   selector: 'g[ngx-combo-charts-series-vertical]',
   template: `
-    @for (bar of bars; track trackBy($index, bar)) {
+    @for (bar of bars; track bar.label) {
       <svg:g
         ngx-charts-bar
         [@animationState]="'active'"
@@ -196,9 +196,5 @@ export class ComboSeriesVerticalComponent implements OnChanges {
 
   onClick(data): void {
     this.select.emit(data);
-  }
-
-  trackBy(index, bar): string {
-    return bar.label;
   }
 }

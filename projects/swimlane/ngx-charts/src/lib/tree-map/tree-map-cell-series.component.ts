@@ -29,7 +29,7 @@ interface TreeMapCell {
 @Component({
   selector: 'g[ngx-charts-tree-map-cell-series]',
   template: `
-    @for (c of cells; track trackBy($index, c)) {
+    @for (c of cells; track c.label) {
       <svg:g
         ngx-charts-tree-map-cell
         [data]="c.data"
@@ -109,9 +109,5 @@ export class TreeMapCellSeriesComponent implements OnChanges {
 
   onClick(data): void {
     this.select.emit(data);
-  }
-
-  trackBy(index, item): string {
-    return item.label;
   }
 }

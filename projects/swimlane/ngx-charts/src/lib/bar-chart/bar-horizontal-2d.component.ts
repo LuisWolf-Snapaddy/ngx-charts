@@ -7,7 +7,6 @@ import {
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef,
-  TrackByFunction
 } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 import { trigger, style, animate, transition } from '@angular/animations';
@@ -81,7 +80,7 @@ import { BarOrientation } from '../common/types/bar-orientation.enum';
         }
         @if (!isSSR) {
           <svg:g>
-            @for (group of results; track trackBy(index, group); let index = $index) {
+            @for (group of results; track group.name; let index = $index) {
               <svg:g [@animationState]="'active'" [attr.transform]="groupTransform(group)">
                 <svg:g
                   ngx-charts-series-horizontal
@@ -111,7 +110,7 @@ import { BarOrientation } from '../common/types/bar-orientation.enum';
         }
         @if (isSSR) {
           <svg:g>
-            @for (group of results; track trackBy(index, group); let index = $index) {
+            @for (group of results; track group.name; let index = $index) {
               <svg:g [attr.transform]="groupTransform(group)">
                 <svg:g
                   ngx-charts-series-horizontal
@@ -341,10 +340,6 @@ export class BarHorizontal2DComponent extends BaseChartComponent {
 
     this.select.emit(data);
   }
-
-  trackBy: TrackByFunction<DataItem> = (index: number, item: DataItem) => {
-    return item.name;
-  };
 
   setColors(): void {
     let domain;

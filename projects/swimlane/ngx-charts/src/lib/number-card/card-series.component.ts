@@ -23,7 +23,7 @@ export interface CardModel extends GridItem {
 @Component({
   selector: 'g[ngx-charts-card-series]',
   template: `
-    @for (c of emptySlots; track trackBy($index, c)) {
+    @for (c of emptySlots; track c.label) {
       <svg:rect
         class="card-empty"
         [attr.x]="c.x"
@@ -35,7 +35,7 @@ export interface CardModel extends GridItem {
         ry="3"
       />
     }
-    @for (c of cards; track trackBy($index, c)) {
+    @for (c of cards; track c.label) {
       <svg:g
         ngx-charts-card
         [x]="c.x"
@@ -137,10 +137,6 @@ export class CardSeriesComponent implements OnChanges {
         tooltipText: `${label}: ${value}`
       };
     });
-  }
-
-  trackBy(index, card): string {
-    return card.label;
   }
 
   onClick(data): void {

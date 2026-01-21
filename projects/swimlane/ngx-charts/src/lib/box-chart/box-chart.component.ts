@@ -11,7 +11,7 @@ import {
 
 import { BaseChartComponent } from '../common/base-chart.component';
 import { ColorHelper } from '../common/color.helper';
-import { BoxChartMultiSeries, BoxChartSeries, IBoxModel, StringOrNumberOrDate } from '../models/chart-data.model';
+import { BoxChartMultiSeries, IBoxModel, StringOrNumberOrDate } from '../models/chart-data.model';
 import { scaleLinear, ScaleLinear, scaleBand, ScaleBand } from 'd3-scale';
 import { calculateViewDimensions } from '../common/view-dimensions.helper';
 import { ViewDimensions } from '../common/types/view-dimension.interface';
@@ -53,7 +53,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
         />
       </svg:g>
       <svg:g [attr.transform]="transform">
-        @for (result of results; track trackBy($index, result)) {
+        @for (result of results; track result.name) {
           <svg:g>
             <svg:g
               ngx-charts-box-series
@@ -138,10 +138,6 @@ export class BoxChartComponent extends BaseChartComponent {
 
   ngOnChanges(): void {
     this.update();
-  }
-
-  trackBy(index: number, item: BoxChartSeries): StringOrNumberOrDate {
-    return item.name;
   }
 
   update(): void {

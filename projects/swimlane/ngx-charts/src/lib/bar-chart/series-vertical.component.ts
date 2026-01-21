@@ -28,7 +28,7 @@ import { isPlatformServer } from '@angular/common';
   template: `
     @if (!isSSR) {
       <svg:g>
-        @for (bar of bars; track trackBy($index, bar)) {
+        @for (bar of bars; track bar.label) {
           <svg:g
             ngx-charts-bar
             [@animationState]="'active'"
@@ -63,7 +63,7 @@ import { isPlatformServer } from '@angular/common';
     }
     @if (isSSR) {
       <svg:g>
-        @for (bar of bars; track trackBy($index, bar)) {
+        @for (bar of bars; track bar.label) {
           <svg:g
             ngx-charts-bar
             [width]="bar.width"
@@ -339,10 +339,6 @@ export class SeriesVerticalComponent implements OnChanges {
       return dataItem.label;
     }
     return dataItem.name;
-  }
-
-  trackBy(index: number, bar: Bar): string {
-    return bar.label;
   }
 
   trackDataLabelBy(index: number, barLabel: any): string {

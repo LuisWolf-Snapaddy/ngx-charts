@@ -91,7 +91,7 @@ import { isPlatformServer } from '@angular/common';
         />
         @if (!isSSR) {
           <svg:g [attr.clip-path]="clipPath">
-            @for (series of data; track trackBy($index, series)) {
+            @for (series of data; track series.name) {
               <svg:g [@animationState]="'active'">
                 <svg:g
                   ngx-charts-bubble-series
@@ -117,7 +117,7 @@ import { isPlatformServer } from '@angular/common';
         }
         @if (isSSR) {
           <svg:g [attr.clip-path]="clipPath">
-            @for (series of data; track trackBy($index, series)) {
+            @for (series of data; track series.name) {
               <svg:g>
                 <svg:g
                   ngx-charts-bubble-series
@@ -459,9 +459,5 @@ export class BubbleChartComponent extends BaseChartComponent {
       this.deactivate.emit({ value: entry, entries: [] });
     }
     this.activeEntries = [];
-  }
-
-  trackBy(index: number, item): string {
-    return `${item.name}`;
   }
 }

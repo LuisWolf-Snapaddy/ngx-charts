@@ -7,7 +7,6 @@ import {
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef,
-  TrackByFunction
 } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 import { trigger, style, animate, transition } from '@angular/animations';
@@ -70,7 +69,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
         }
         @if (!isSSR) {
           <svg:g>
-            @for (group of results; track trackBy($index, group)) {
+            @for (group of results; track group.name) {
               <svg:g [@animationState]="'active'" [attr.transform]="groupTransform(group)">
                 <svg:g
                   ngx-charts-series-vertical
@@ -97,7 +96,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
         }
         @if (isSSR) {
           <svg:g>
-            @for (group of results; track trackBy($index, group)) {
+            @for (group of results; track group.name) {
               <svg:g [attr.transform]="groupTransform(group)">
                 <svg:g
                   ngx-charts-series-vertical
@@ -275,10 +274,6 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
 
     this.select.emit(data);
   }
-
-  trackBy: TrackByFunction<Series> = (index: number, item: Series) => {
-    return item.name;
-  };
 
   setColors(): void {
     let domain;

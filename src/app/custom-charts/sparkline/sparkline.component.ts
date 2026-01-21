@@ -18,7 +18,7 @@ import {
     <ngx-charts-chart [view]="[width, height]" [showLegend]="false" [animations]="animations">
       <svg:g [attr.transform]="transform" class="line-chart chart">
         <svg:g>
-          @for (series of results; track trackBy($index, series)) {
+          @for (series of results; track series.name) {
             <svg:g>
               <svg:g
                 ngx-charts-line-series
@@ -187,10 +187,6 @@ export class SparklineComponent extends BaseChartComponent {
     }
 
     return false;
-  }
-
-  trackBy(index, item): string {
-    return `${item.name}`;
   }
 
   setColors(): void {
