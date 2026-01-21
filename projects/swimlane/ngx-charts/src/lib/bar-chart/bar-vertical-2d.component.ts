@@ -6,7 +6,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { scaleBand, scaleLinear } from 'd3-scale';
@@ -106,8 +106,7 @@ import { isPlatformServer } from '@angular/common';
               ></svg:g>
             }
           </svg:g>
-        }
-        @if (isSSR) {
+        } @else {
           <svg:g>
             @for (group of results; track group.name; let index = $index) {
               <svg:g

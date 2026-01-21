@@ -63,8 +63,7 @@ enum ElementType {
             y2="15"
             [attr.stroke]="colors.getColor(units)"
           />
-        }
-        @if (hasPreviousValue) {
+
           <svg:line
             [attr.transform]="transformLine"
             x1="0"

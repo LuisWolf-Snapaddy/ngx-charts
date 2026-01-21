@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 import { trigger, style, animate, transition } from '@angular/animations';
@@ -98,8 +98,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
               </svg:g>
             }
           </svg:g>
-        }
-        @if (isSSR) {
+        } @else {
           <svg:g>
             @for (group of results; track group.name; let index = $index) {
               <svg:g [attr.transform]="groupTransform(group)">

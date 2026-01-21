@@ -51,8 +51,7 @@ import { isPlatformServer } from '@angular/common';
               [tooltipTemplate]="tooltipTemplate"
               [tooltipContext]="circle.data"
             />
-          }
-          @if (isSSR) {
+          } @else {
             <svg:g
               ngx-charts-circle
               class="circle"

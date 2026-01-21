@@ -104,8 +104,7 @@ import { isPlatformServer } from '@angular/common';
                 </svg:g>
               }
             </svg:g>
-          }
-          @if (isSSR) {
+          } @else {
             <svg:g>
               @for (series of results; track series.name) {
                 <svg:g>

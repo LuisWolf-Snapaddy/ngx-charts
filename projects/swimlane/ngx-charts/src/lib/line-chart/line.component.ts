@@ -30,8 +30,7 @@ import { isPlatformServer } from '@angular/common';
           stroke-width="1.5px"
         />
       </svg:g>
-    }
-    @if (isSSR) {
+    } @else {
       <svg:g>
         <svg:path class="line" [attr.d]="initialPath" [attr.fill]="fill" [attr.stroke]="stroke" stroke-width="1.5px" />
       </svg:g>

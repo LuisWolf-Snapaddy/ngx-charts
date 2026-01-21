@@ -59,8 +59,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
                 [countSuffix]="'%'"
                 text-anchor="middle"
               ></svg:text>
-            }
-            @if (!animations) {
+            } @else {
               <svg:text class="label percent-label" dy="-0.5em" x="0" y="5" text-anchor="middle">
                 {{ series.percent.toLocaleString() }}
               </svg:text>
@@ -79,8 +78,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
                 [countTo]="series.total"
                 [countPrefix]="label + ': '"
               ></svg:text>
-            }
-            @if (!animations) {
+            } @else {
               <svg:text class="label" dy="1.23em" x="0" [attr.y]="series.outerRadius" text-anchor="middle">
                 {{ label }}: {{ series.total.toLocaleString() }}
               </svg:text>

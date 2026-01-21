@@ -58,26 +58,27 @@ export interface Circle {
             [stops]="circle.gradientStops"
           />
         </defs>
-        @if (!isSSR && barVisible && type === 'standard') {
-          <svg:rect
-            [@animationState]="'active'"
-            [attr.x]="circle.cx - circle.radius"
-            [attr.y]="circle.cy"
-            [attr.width]="circle.radius * 2"
-            [attr.height]="circle.height"
-            [attr.fill]="gradientFill"
-            class="tooltip-bar"
-          />
-        }
-        @if (isSSR && barVisible && type === 'standard') {
-          <svg:rect
-            [attr.x]="circle.cx - circle.radius"
-            [attr.y]="circle.cy"
-            [attr.width]="circle.radius * 2"
-            [attr.height]="circle.height"
-            [attr.fill]="gradientFill"
-            class="tooltip-bar"
-          />
+        @if (barVisible && type === 'standard') {
+          @if (!isSSR) {
+            <svg:rect
+              [@animationState]="'active'"
+              [attr.x]="circle.cx - circle.radius"
+              [attr.y]="circle.cy"
+              [attr.width]="circle.radius * 2"
+              [attr.height]="circle.height"
+              [attr.fill]="gradientFill"
+              class="tooltip-bar"
+            />
+          } @else {
+            <svg:rect
+              [attr.x]="circle.cx - circle.radius"
+              [attr.y]="circle.cy"
+              [attr.width]="circle.radius * 2"
+              [attr.height]="circle.height"
+              [attr.fill]="gradientFill"
+              class="tooltip-bar"
+            />
+          }
         }
         <svg:g
           ngx-charts-circle

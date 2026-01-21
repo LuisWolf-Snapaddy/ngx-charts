@@ -46,8 +46,7 @@ import { BarOrientation } from '../common/types/bar-orientation.enum';
             @if (animations) {
               <xhtml:span class="treemap-val" ngx-charts-count-up [countTo]="value" [valueFormatting]="valueFormatting">
               </xhtml:span>
-            }
-            @if (!animations) {
+            } @else {
               <xhtml:span class="treemap-val">
                 {{ formattedValue }}
               </xhtml:span>

@@ -6,7 +6,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 import { trigger, style, animate, transition } from '@angular/animations';
@@ -107,8 +107,7 @@ import { BarOrientation } from '../common/types/bar-orientation.enum';
               </svg:g>
             }
           </svg:g>
-        }
-        @if (isSSR) {
+        } @else {
           <svg:g>
             @for (group of results; track group.name; let index = $index) {
               <svg:g [attr.transform]="groupTransform(group)">

@@ -29,8 +29,7 @@ import { isPlatformBrowser } from '@angular/common';
           <span>
             <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ model: context }"> </ng-template>
           </span>
-        }
-        @if (title) {
+        } @else {
           <span [innerHTML]="title"> </span>
         }
       </div>

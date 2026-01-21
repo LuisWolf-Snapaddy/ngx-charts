@@ -114,8 +114,7 @@ import { isPlatformServer } from '@angular/common';
               </svg:g>
             }
           </svg:g>
-        }
-        @if (isSSR) {
+        } @else {
           <svg:g [attr.clip-path]="clipPath">
             @for (series of data; track series.name) {
               <svg:g>

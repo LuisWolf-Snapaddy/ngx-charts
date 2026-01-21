@@ -119,8 +119,7 @@ const twoPI = 2 * Math.PI;
               </svg:g>
             }
           </svg:g>
-        }
-        @if (isSSR) {
+        } @else {
           <svg:g [attr.transform]="transformPlot">
             @for (series of results; track series.name) {
               <svg:g>

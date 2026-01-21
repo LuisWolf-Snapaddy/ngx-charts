@@ -7,7 +7,7 @@ import {
   HostListener,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 import { scaleLinear, scalePoint, scaleTime } from 'd3-scale';
 import { CurveFactory, curveLinear } from 'd3-shape';

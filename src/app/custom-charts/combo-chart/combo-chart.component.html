@@ -34,8 +34,7 @@
         [wrapTicks]="wrapTicks"
         (dimensionsChanged)="updateYAxisWidth($event)"
       ></svg:g>
-    }
-    @if (yAxis) {
+
       <svg:g
         ngx-charts-y-axis
         [yScale]="yScaleLine"

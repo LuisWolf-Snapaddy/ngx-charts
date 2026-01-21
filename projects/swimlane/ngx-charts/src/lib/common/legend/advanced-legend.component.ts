@@ -31,8 +31,7 @@ export interface AdvancedLegendItem {
     <div class="advanced-pie-legend" [style.width.px]="width">
       @if (animations) {
         <div class="total-value" ngx-charts-count-up [countTo]="roundedTotal" [valueFormatting]="valueFormatting"></div>
-      }
-      @if (!animations) {
+      } @else {
         <div class="total-value">
           {{ valueFormatting ? valueFormatting(roundedTotal) : defaultValueFormatting(roundedTotal) }}
         </div>
@@ -58,8 +57,7 @@ export interface AdvancedLegendItem {
                   [countTo]="legendItem._value"
                   [valueFormatting]="valueFormatting"
                 ></div>
-              }
-              @if (!animations) {
+              } @else {
                 <div class="item-value">
                   {{ valueFormatting ? valueFormatting(legendItem.value) : defaultValueFormatting(legendItem.value) }}
                 </div>
@@ -73,8 +71,7 @@ export interface AdvancedLegendItem {
                   [countTo]="legendItem.percentage"
                   [countSuffix]="'%'"
                 ></div>
-              }
-              @if (!animations) {
+              } @else {
                 <div class="item-percent">{{ legendItem.percentage.toLocaleString() }}%</div>
               }
             </div>

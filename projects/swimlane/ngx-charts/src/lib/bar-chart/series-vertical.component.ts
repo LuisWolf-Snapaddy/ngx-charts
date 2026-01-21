@@ -60,8 +60,7 @@ import { isPlatformServer } from '@angular/common';
           ></svg:g>
         }
       </svg:g>
-    }
-    @if (isSSR) {
+    } @else {
       <svg:g>
         @for (bar of bars; track bar.label) {
           <svg:g
