@@ -19,7 +19,7 @@ enum ClassEnum {
 @Component({
   selector: 'g[ngx-charts-grid-panel-series]',
   template: `
-    @for (gridPanel of gridPanels; track gridPanel) {
+    @for (gridPanel of gridPanels; track gridPanel.name) {
       <svg:g
         ngx-charts-grid-panel
         [height]="gridPanel.height"

@@ -55,7 +55,7 @@ interface PolarChartCircle {
         [fill]="hasGradient ? gradientUrl : seriesColor"
         [animations]="animations"
       />
-      @for (circle of circles; track circle) {
+      @for (circle of circles; track circle.label) {
         <svg:g
           ngx-charts-circle
           class="circle"

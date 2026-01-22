@@ -115,7 +115,7 @@ import { select } from 'd3-selection';
                 [tooltipTemplate]="seriesTooltipTemplate"
                 (hover)="updateHoveredVertical($event)"
               />
-              @for (series of results; track series) {
+              @for (series of results; track series.name) {
                 <svg:g>
                   <svg:g
                     ngx-charts-circle-series

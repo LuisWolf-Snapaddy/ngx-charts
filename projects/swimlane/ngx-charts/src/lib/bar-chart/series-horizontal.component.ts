@@ -47,7 +47,7 @@ import { ScaleType } from '../common/types/scale-type.enum';
     }
     @if (showDataLabel) {
       <svg:g>
-        @for (b of barsForDataLabels; track trackDataLabelBy(i, b); let i = $index) {
+        @for (b of barsForDataLabels; track trackDataLabelBy($index, b); let i = $index) {
           <svg:g
             ngx-charts-bar-label
             [barX]="b.x"

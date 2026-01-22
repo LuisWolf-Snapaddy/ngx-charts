@@ -80,7 +80,7 @@ interface RectItem {
             ></svg:path>
           </svg:g>
         }
-        @for (rect of nodeRects; track rect) {
+        @for (rect of nodeRects; track rect.label) {
           <svg:g [attr.transform]="rect.transform" class="node">
             <svg:rect
               [attr.x]="0"
@@ -102,7 +102,7 @@ interface RectItem {
             ></svg:rect>
           </svg:g>
         }
-        @for (rect of nodeRects; track rect) {
+        @for (rect of nodeRects; track rect.label) {
           <svg:g [attr.transform]="rect.transform">
             @if (showLabels && rect.height > 15) {
               <svg:text

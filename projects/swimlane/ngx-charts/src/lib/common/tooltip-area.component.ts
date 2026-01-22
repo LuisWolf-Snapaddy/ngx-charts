@@ -45,7 +45,7 @@ export interface Tooltip {
       />
       <ng-template #defaultTooltipTemplate let-model="model">
         <xhtml:div class="area-tooltip-container">
-          @for (tooltipItem of model; track tooltipItem) {
+          @for (tooltipItem of model; track tooltipItem.name) {
             <xhtml:div class="tooltip-item">
               <xhtml:span class="tooltip-item-color" [style.background-color]="tooltipItem.color"></xhtml:span>
               {{ getToolTipText(tooltipItem) }}

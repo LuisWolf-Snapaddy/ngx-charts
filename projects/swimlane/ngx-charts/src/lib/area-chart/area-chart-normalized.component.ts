@@ -111,7 +111,7 @@ import { ViewDimensions } from '../common/types/view-dimension.interface';
                 [tooltipTemplate]="seriesTooltipTemplate"
                 (hover)="updateHoveredVertical($event)"
               />
-              @for (series of results; track series) {
+              @for (series of results; track series.name) {
                 <svg:g>
                   <svg:g
                     ngx-charts-circle-series
